@@ -5,7 +5,6 @@ imported = False
 # pyrogram
 try:
     from pyrogram.types import Message, MessageEntity
-
     imported = True
 except ImportError:
     pass
@@ -13,15 +12,27 @@ except ImportError:
 # python-telegram-bot
 try:
     from telegram import Message, MessageEntity
-
     imported = True
 except ImportError:
     pass
 
 # telethon
 try:
-    from telethon.tl.custom import Message, MessageEntity
+    from telethon.types import Message, MessageEntity
+    imported = True
+except ImportError:
+    pass
 
+# aiogram
+try:
+    from aiogram.types import Message, MessageEntity
+    imported = True
+except ImportError:
+    pass
+
+# pyTelegramBotAPI
+try:
+    from telebot.types import Message, MessageEntity
     imported = True
 except ImportError:
     pass
@@ -31,27 +42,19 @@ if not imported:
     class MessageEntity:
         def __init__(
                 self,
-                type: str = None,
-                offset: int = None,
-                length: int = None,
-                url: str = None,
-                user=None,
-                language: str = None,
-                custom_emoji_id: int = None
+                type: str,
+                offset: int,
+                length: int,
         ):
             self.type = type
             self.offset = offset
             self.length = length
-            self.url = url
-            self.user = user
-            self.language = language
-            self.custom_emoji_id = custom_emoji_id
 
 
     class Message:
         def __init__(
                 self,
-                id: int = None,
+                id: int,
                 text: str = None,
                 caption: str = None,
                 entities: List[MessageEntity] = None,
@@ -62,9 +65,6 @@ if not imported:
             self.caption = caption
             self.entities = entities
             self.caption_entities = caption_entities
-
-
-    imported = True
 
 
 Leaf = str

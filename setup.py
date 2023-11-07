@@ -1,4 +1,9 @@
+import tomllib
 from setuptools import setup, find_packages
+
+
+with open("pyproject.toml", 'rb') as f:
+    config = tomllib.load(f)
 
 
 with open("README.md", encoding="utf-8") as f:
@@ -7,7 +12,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="TgEntity",
-    version="0.1.0",
+    version=config["project"]["version"],
     description="Telegram entity parser",
     long_description=readme,
     long_description_content_type="text/markdown",
