@@ -1,41 +1,27 @@
+import importlib
 from typing import List, Union
 
-imported = False
 
-# pyrogram
-try:
-    from pyrogram.types import Message, MessageEntity
-    imported = True
-except ImportError:
-    pass
+imported = None
+APIs = [
+    'pyrogram.types',  # pyrogram
+    'telegram',  # python-telegram-bot
+    'telethon.types',  # telethon
+    'aiogram.types',  # aiogram
+    'telebot.types'  # pyTelegramBotAPI
+]
 
-# python-telegram-bot
-try:
-    from telegram import Message, MessageEntity
-    imported = True
-except ImportError:
-    pass
-
-# telethon
-try:
-    from telethon.types import Message, MessageEntity
-    imported = True
-except ImportError:
-    pass
-
-# aiogram
-try:
-    from aiogram.types import Message, MessageEntity
-    imported = True
-except ImportError:
-    pass
-
-# pyTelegramBotAPI
-try:
-    from telebot.types import Message, MessageEntity
-    imported = True
-except ImportError:
-    pass
+for name in APIs:
+    try:
+        api = importlib.import_module(name)
+        Message = api.Message
+        MessageEntity = api.MessageEntity
+        imported = name
+        break
+    except ImportError:
+        pass
+    except AttributeError:
+        pass
 
 # simple
 if not imported:
@@ -45,11 +31,13 @@ if not imported:
                 type: str,
                 offset: int,
                 length: int,
+                **kwargs
         ):
             self.type = type
             self.offset = offset
             self.length = length
-
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
     class Message:
         def __init__(
@@ -58,13 +46,16 @@ if not imported:
                 text: str = None,
                 caption: str = None,
                 entities: List[MessageEntity] = None,
-                caption_entities: List[MessageEntity] = None
+                caption_entities: List[MessageEntity] = None,
+                **kwargs
         ):
             self.id = id
             self.text = text
             self.caption = caption
             self.entities = entities
             self.caption_entities = caption_entities
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
 
 Leaf = str

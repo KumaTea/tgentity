@@ -8,6 +8,7 @@ MarkdownV2_test = "URL entity inside bold must stringify to Markdown correctly"
 
 class TestMarkdownV2(unittest.TestCase):
     print("Testing Markdown V2")
+    print(f"API: \n  {Message=}\n  {MessageEntity=}\n\n")
 
     def test_markdown_v2(self):
         assert to_markdown_v2(

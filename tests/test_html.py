@@ -8,6 +8,7 @@ HTML_test = "URL entity inside bold must stringify to HTML correctly"
 
 class TestHTML(unittest.TestCase):
     print("Testing HTML")
+    print(f"API: \n  {Message=}\n  {MessageEntity=}\n\n")
 
     def test_html(self):
         assert to_html(
