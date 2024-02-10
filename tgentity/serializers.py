@@ -3,36 +3,36 @@ from tgentity.types import Node
 
 def HTML(to_match: str, node: Node = None) -> str:
     node_type = str(node.type).lower()
-    if node_type == "bold":
+    if "bold" in node_type:
         return f"<b>{to_match}</b>"
-    if node_type == "italic":
+    if "italic" in node_type:
         return f"<i>{to_match}</i>"
-    if node_type == "underline":
+    if "underline" in node_type:
         return f"<u>{to_match}</u>"
-    if node_type == "strikethrough":
+    if "strikethrough" in node_type:
         return f"<del>{to_match}</del>"
-    if node_type == "code":
+    if "code" in node_type:
         return f"<code>{to_match}</code>"
-    if node_type == "pre":
+    if "pre" in node_type:
         if node.language:
             return f"<pre><code class=\"language-{node.language}\">{to_match}</code></pre>"
         return f"<pre>{to_match}</pre>"
-    if node_type == "spoiler":
+    if "spoiler" in node_type:
         return f"<span class=\"tg-spoiler\">{to_match}</span>"
-    if node_type == "url":
+    if "url" in node_type:
         return f"<a href=\"{node.text}\">{to_match}</a>"
-    if node_type == "text_link":
+    if "text_link" in node_type:
         return f"<a href=\"{node.url}\">{to_match}</a>"
-    if node_type == "text_mention":
+    if "text_mention" in node_type:
         return f"<a href=\"tg://user?id={node.user.id}\">{to_match}</a>"
     if (
-        node_type == "mention" or
-        node_type == "custom_emoji" or
-        node_type == "hashtag" or
-        node_type == "cashtag" or
-        node_type == "bot_command" or
-        node_type == "phone_number" or
-        node_type == "email"
+        "mention" in node_type or
+        "custom_emoji" in node_type or
+        "hashtag" in node_type or
+        "cashtag" in node_type or
+        "bot_command" in node_type or
+        "phone_number" in node_type or
+        "email" in node_type
     ):
         return to_match
     return to_match
@@ -40,36 +40,36 @@ def HTML(to_match: str, node: Node = None) -> str:
 
 def MarkdownV2(to_match: str, node: Node = None) -> str:
     node_type = str(node.type).lower()
-    if node_type == "bold":
+    if "bold" in node_type:
         return f"*{to_match}*"
-    if node_type == "italic":
+    if "italic" in node_type:
         return f"_{to_match}_"
-    if node_type == "underline":
+    if "underline" in node_type:
         return f"__{to_match}__"
-    if node_type == "strikethrough":
+    if "strikethrough" in node_type:
         return f"~{to_match}~"
-    if node_type == "code":
+    if "code" in node_type:
         return f"`{to_match}`"
-    if node_type == "pre":
+    if "pre" in node_type:
         if node.language:
             return f"```{node.language}\n{to_match}\n```"
         return f"```\n{to_match}\n```"
-    if node_type == "spoiler":
+    if "spoiler" in node_type:
         return f"||{to_match}||"
-    if node_type == "url":
+    if "url" in node_type:
         return to_match
-    if node_type == "text_link":
+    if "text_link" in node_type:
         return f"[{to_match}]({node.url})"
-    if node_type == "text_mention":
+    if "text_mention" in node_type:
         return f"[{to_match}](tg://user?id={node.user.id})"
     if (
-            node_type == "mention" or
-            node_type == "custom_emoji" or
-            node_type == "hashtag" or
-            node_type == "cashtag" or
-            node_type == "bot_command" or
-            node_type == "phone_number" or
-            node_type == "email"
+        "mention" in node_type or
+        "custom_emoji" in node_type or
+        "hashtag" in node_type or
+        "cashtag" in node_type or
+        "bot_command" in node_type or
+        "phone_number" in node_type or
+        "email" in node_type
     ):
         return to_match
     return to_match
