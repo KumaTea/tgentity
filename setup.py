@@ -5,48 +5,30 @@ from setuptools import setup, find_packages
 with open("pyproject.toml", 'rb') as f:
     config = tomllib.load(f)
 
-
-with open("README.md", encoding="utf-8") as f:
+with open("README.md", "r", encoding="utf-8") as f:
     readme = f.read()
 
-
 setup(
-    name="TgEntity",
+    name=config["project"]["name"],
     version=config["project"]["version"],
-    description="Telegram entity parser",
+    description=config["project"]["description"],
     long_description=readme,
-    long_description_content_type="text/markdown",
-    url="https://github.com/KumaTea/tgentity",
-    download_url="https://github.com/KumaTea/tgentity/releases/latest",
-    author="KumaTea",
-    author_email="mail@kmtea.eu",
+    long_description_content_type=config['project']['readme']['content-type'],
+    url=config['project']['urls']['Repository'],
+    download_url=config['project']['urls']['Repository'] + "/releases/latest",
+    author=config['project']['authors'][0]['name'],
+    author_email=config['project']['authors'][0]['email'],
     license="MIT",
     packages=find_packages(),
-    python_requires=">=3.10",  # match-case
+    python_requires=config['project']['requires-python'],
     install_requires=[],  # no dependencies
     # extras_require={
     #     "dev": []
     # },
-    classifiers=[
-        "Development Status :: 3 - Alpha",
-        "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
-        "Programming Language :: Python :: 3.12",
-        "Programming Language :: Python :: Implementation",
-        "Programming Language :: Python :: Implementation :: CPython",
-        "Programming Language :: Python :: Implementation :: PyPy",
-        "Topic :: Communications",
-        "Topic :: Communications :: Chat",
-        "Topic :: Software Development :: Libraries",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-    ],
-    keywords="telegram entity entities parser html markdown v2",
+    classifiers=config['project']['classifiers'],
+    keywords=" ".join(config['project']['keywords']),
     project_urls={
-        "Source": "https://github.com/KumaTea/tgentity",
+        "Source": config['project']['urls']['Repository'],
     },
     test_suite="tests",
     # zip_safe=True,

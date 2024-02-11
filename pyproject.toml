@@ -4,10 +4,10 @@ build-backend  =  "setuptools.build_meta"
 
 [project]
 name = "TgEntity"
-version = "0.1.1"
+version = "0.2.0"
 description = "Telegram entity parser"
 readme = {file = "README.md", content-type = "text/markdown"}
-requires-python = ">=3.10"
+requires-python = ">=3.6"
 license = {file = "LICENSE"}
 authors = [
     {name = "KumaTea", email = "mail@kmtea.eu"}
@@ -22,6 +22,10 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
